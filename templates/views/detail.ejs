@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>상품정보 조회</title>
+<%- include ("../_helpers/html_header") %>
+</head>
+<body>
+	<div class="container">
+		<h2>상품정보 조회</h2>
+		<p/>	
+		<form method="POST">
+			<div class="form-group">
+			<label for="authorid">Author ID:</label> 
+			<input type="text" name="author_id" value="<%= data.author_id %>" readonly>
+			</div>
+			
+			<div class="form-group">
+			<label for="authorname">Author Name:</label> 
+			<input type="text" name="author_name" value="<%= data.author_name %>" readonly>
+			</div>
+						
+			<div class="form-group">
+				<label for="prod_name">상품이름</label> 
+				<input type="text" class="form-control" name="prod_name" value = "<%= data.prod_name %>">
+			</div>
+			<div class="form-group">
+				<label for="prod_no">상품번호</label> 
+				<input type="text" class="form-control" name="prod_no" value = "<%= data.prod_no %>">
+				
+			</div>
+			<div class="form-group">
+				<label for="prod_section">분류</label> 
+				<input type="text" class="form-control" name="prod_section" value = "<%= data.prod_section %>">
+			</div>
+		</form>
+
+		<button class="btn btn-success" id="btn1">수정하기</button>
+		&nbsp;
+		<button class="btn btn-success" id="btn2">돌아가기</button>
+	</div>
+	
+<script>
+$( function() {
+	$("#btn1").off().on( "click", () => {
+		location.href = "/edit/<%=data.id%>";
+	});
+	$("#btn2").off().on( "click", () => { history.back(); });
+});
+</script>	
+</body>
+</html>
