@@ -1,4 +1,4 @@
-# New App - node sample
+# Front App - node sample
 
 node.js의 ejs(Embed Javascript)방식으로 만든 어플리케이션 예제입니다.    
 
