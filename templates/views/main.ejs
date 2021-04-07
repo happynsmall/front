@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>상품정보 조회</title>
+<%- include ("../_helpers/html_header") %>
+</head>
+<body>
+	<div class="container">
+		<h2>상품정보 조회</h2>
+		<p/>
+		<form method="POST">
+			<div class="form-group">
+				<label for="prod_no">상품번호</label> 
+				<input type="text" class="form-control" id="lookupInput" name="prod_no" value = "">
+			</div>
+		</form>
+		<button class="btn btn-success" id="lookup">조회하기</button>
+	</div>
+	
+<script>
+$(function () {
+    $("#lookup").on("click", () => {
+        const input = document.getElementById("lookupInput");
+        console.log(input.value)
+        location.href = "/detail/" + input.value;
+    });
+});
+</script>
+</body>
+</html>
+

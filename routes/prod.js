@@ -13,9 +13,19 @@ router.use(bodyParser.urlencoded({ extended: false }));
 //----------
 
 //--Show
+router.get("/main", (req, res) => {
+	util.log("상품메인");
+
+	res.render("views/main", {
+		mode: "view",
+	});
+});
+
+//-- ProductDetail Mock Object
+/*
 router.get("/detail/:id", (req, res) => {
 	util.log("상품정보 조회");
-
+	
 	ret = {
 		author_id: "001",
 		author_name: "이해경",
@@ -27,8 +37,13 @@ router.get("/detail/:id", (req, res) => {
 		mode: "view",
 		data: ret 
 	});
-/*
-	getEntry(req.params.id, token, function(ret) {
+});
+*/
+
+//-- ProductDetail
+router.get("/detail/:id", (req, res) => {
+	util.log("상품정보 조회");
+	getEntry(req.params.id, function(ret) {
 		if(ret != null) {
 			res.render("views/detail", {
 				mode: "view",
@@ -36,16 +51,11 @@ router.get("/detail/:id", (req, res) => {
 			});				
 		}
 	});
-*/
 });
 
-
 //--- get one data
-let getEntry = function(id, token, callback) {
-	let _headers = {}
-	_headers[__ACCESS_TOKEN_NAME] = token;
-	axios.get(__API_PRODUCT_URI + "/detail", {
-		headers: _headers,
+let getEntry = function(id, callback) {
+	axios.get(__API_PRODUCT_URI + "/product", {
 		params: {
 			prod_id: id
 		}
@@ -53,13 +63,13 @@ let getEntry = function(id, token, callback) {
 	.then((ret) => {
 		util.log("Success to get detail info !");
 		let data = ret.data;
-		util.log(data.value);
-		callback(data.value);	
+		util.log(data);
+		callback(data);	
 	})
 	.catch((error) => {
 		console.error("Fail to get product info!", error);
 		callback(null);
-	});	
+	});
 }
 
 module.exports = router;

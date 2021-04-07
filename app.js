@@ -10,9 +10,10 @@ const util = require(__dirname+'/util');
 
 //--- global constants & 환경변수
 global.__BASEDIR = __dirname + '/';
+global.__ACCESS_TOKEN_NAME = "x-access-token";
+global.__API_PRODUCT_URI = process.env.API_PRODUCT_URI || "http://nsmall.scg.169.56.84.36.nip.io/happygoods";
 const port = (process.env.service_target_port || 8090);
 //--------
-
 
 //---- 기본 library 셋팅
 const app = express();
@@ -31,7 +32,6 @@ app.use(function(req, res, next) {
 	let pathname = req.url;
     util.log("Request for [" + pathname + "] received.");
 	next();
-
 });
 //-------------
 
@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 app.use(require(path.join(__BASEDIR, "/routes/prod.js")));		//include 상품정보처리
 //--------
 
-//----- start web server 
+//----- start web server
 app.listen(port, () => {
 	console.log('Listen: ' + port);
 });
