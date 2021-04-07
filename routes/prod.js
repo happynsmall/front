@@ -13,19 +13,11 @@ router.use(bodyParser.urlencoded({ extended: false }));
 //----------
 
 //--Show
-router.get("/detail/:id", (req, res) => {
+router.get("/detail", (req, res) => {
 	util.log("상품정보 조회");
 
-	ret = {
-		author_id: "001",
-		author_name: "이해경",
-		prod_name: "노트북",
-		prod_no: "111",
-		prod_section: "PC"
-	}
 	res.render("views/detail", {
 		mode: "view",
-		data: ret 
 	});
 /*
 	getEntry(req.params.id, token, function(ret) {
@@ -39,11 +31,31 @@ router.get("/detail/:id", (req, res) => {
 */
 });
 
+router.post("/detail/search", (req, res) => {
+	util.log("상품상세조회");
+	console.log(req.body.prod_no);
 
+	let itemNo = req.body.prod_no;
+	util.log(itemNo + "e여까지옴");
+	
+	axios({
+		method:"POST",
+		url:'',
+		data:{
+			"itemNo": itemNo
+		}
+	}).then((res) => {
+		console.log(res + "호호호")
+	}).catch(error=>{
+		console.log(error);
+		throw new Error(error);
+	});
+
+
+	
+});
 //--- get one data
 let getEntry = function(id, token, callback) {
-	let _headers = {}
-	_headers[__ACCESS_TOKEN_NAME] = token;
 	axios.get(__API_PRODUCT_URI + "/detail", {
 		headers: _headers,
 		params: {
