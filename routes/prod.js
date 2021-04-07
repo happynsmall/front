@@ -21,25 +21,6 @@ router.get("/main", (req, res) => {
 	});
 });
 
-//-- ProductDetail Mock Object
-/*
-router.get("/detail/:id", (req, res) => {
-	util.log("상품정보 조회");
-	
-	ret = {
-		author_id: "001",
-		author_name: "이해경",
-		prod_name: "노트북",
-		prod_no: "111",
-		prod_section: "PC"
-	}
-	res.render("views/detail", {
-		mode: "view",
-		data: ret 
-	});
-});
-*/
-
 //-- ProductDetail
 router.get("/detail/:id", (req, res) => {
 	util.log("상품정보 조회");
@@ -54,8 +35,8 @@ router.get("/detail/:id", (req, res) => {
 });
 
 //--- get one data
-let getEntry = function(id, callback) {
-	axios.get(__API_PRODUCT_URI + "/product", {
+let getEntry = function(id, token, callback) {
+	axios.get(__API_PRODUCT_URI + "/detail", {
 		params: {
 			prod_id: id
 		}
