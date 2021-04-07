@@ -13,6 +13,11 @@ router.use(bodyParser.urlencoded({ extended: false }));
 //----------
 
 //--Show
+router.get("/", (req, res) => {
+	res.redirect('/main');
+});
+
+//--Show
 router.get("/main", (req, res) => {
 	util.log("상품메인");
 
