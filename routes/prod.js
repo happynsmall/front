@@ -41,12 +41,8 @@ router.get("/detail/:id", (req, res) => {
 
 //--- get one data
 let getEntry = function(id, callback) {
-	util.log("request->" + __API_PRODUCT_URI + "/product");
-	util.log("goodsCd:"+id);
-	axios.get(__API_PRODUCT_URI + "/product", {
-		params: {
-			goodsCd: id
-		}
+	util.log("request->" + __API_PRODUCT_URI + "/product/" + id);
+	axios.get(__API_PRODUCT_URI + "/product/" + id, {
 	})
 	.then((ret) => {
 		util.log("Success to get detail info !");
