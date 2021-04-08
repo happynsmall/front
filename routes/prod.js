@@ -41,7 +41,7 @@ router.get("/detail/:id", (req, res) => {
 
 //--- get one data
 let getEntry = function(id, callback) {
-	axios.get(__API_PRODUCT_URI + "/detail", {
+	axios.get(__API_PRODUCT_URI + "/product", {
 		params: {
 			prod_id: id
 		}
