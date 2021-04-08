@@ -33,6 +33,7 @@ $( function() {
 		const goodsCd = document.getElementById("goodsCd").innerText;
 		
 		$.getJSON("http://nsmall.scg.169.56.84.36.nip.io/happygoods" + "/nego/" + goodsCd,
+			
 			// contentType: "application/json; charset=utf-8",
 			function (data) { // 이 xml 형태의 데이터를 args로 받음 (바깥으로부터 들어옴)
 				// 반복문으로 만들어낸 데이터를 html로 바꿔서 str을 출력해라
