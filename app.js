@@ -30,7 +30,15 @@ app.set('views', path.join(__BASEDIR, '/templates'));	//ui rendering시 사용�
 //----- middle ware: routing되는 서버모듈 시작 전에 항상 수행-인증토큰 검증
 app.use(function(req, res, next) {
 	let pathname = req.url;
-    util.log("Request for [" + pathname + "] received.");
+  
+	util.log("Request for [" + pathname + "] received.");
+	
+	if (req.url == '/readiness') {
+		res.writeHead(200);
+		res.end('Ready!');
+		next();
+		return;
+	}
 	next();
 });
 //-------------

@@ -15,16 +15,18 @@
 		<p>
 			상품번호: <%= data.goodsCd %>
 		</p>
-		<p>
+		<h2>
 			<%= data.goodsPrice %> 원
-		</p>
+		</h2>
 		&nbsp;
-		<button class="btn btn-success" id="back">돌아가기</button>
+		<button class="btn btn-block btn-danger" id="nego">네고하기</button>
 	</div>
 	
 <script>
 $( function() {
-	$("#back").off().on( "click", () => { history.back(); });
+	$("#nego").off().on( "click", () => { 
+		history.back(); 
+	});
 });
 
 </script>	
