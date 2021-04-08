@@ -12,12 +12,17 @@
 		<h1>
 			<%= data.goodsNm %>
 		</h1>
-		<p>
-			상품번호: <%= data.goodsCd %>
-		</p>
+		<div style="display:inline-block">
+			<p>상품번호:</p>
+			<p id="goodsCd">
+				<%= data.goodsCd %>
+			</p>
+		</div>
 		<h3>
-			<%= data.goodsPrice %> 원
+			<span id="price"><%= data.goodsPrice %></span>
+			<span>원</span>
 		</h3>
+		<h3 class="text-danger" id="negoPrice" style="display: none"></h3>
 		&nbsp;
 		<button class="btn btn-block btn-danger" id="nego">네고하기</button>
 	</div>
@@ -25,7 +30,18 @@
 <script>
 $( function() {
 	$("#nego").off().on( "click", () => { 
-		history.back(); 
+		const goodsCd = document.getElementById("goodsCd").innerText;
+		
+		$.getJSON("http://scg:8082/happygoods" + "/nego/" + goodsCd,
+			// contentType: "application/json; charset=utf-8",
+			function (data) { // 이 xml 형태의 데이터를 args로 받음 (바깥으로부터 들어옴)
+				// 반복문으로 만들어낸 데이터를 html로 바꿔서 str을 출력해라
+				$("#negoPrice").css("display", "block");
+				$("#negoPrice").html(data.goodsPrice);
+				$("#price").addClass("text-muted")
+				$("#price").css("text-decoration", "line-through")
+			},
+		);
 	});
 });
 
