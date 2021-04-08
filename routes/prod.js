@@ -47,6 +47,7 @@ let getEntry = function(id, callback) {
 	.then((ret) => {
 		util.log("Success to get detail info !");
 		let data = ret.data;
+		util.log(ret);
 		util.log(data);
 		callback(data);	
 	})
